@@ -8,6 +8,7 @@ import com.fasterxml.jackson.databind.annotation.JsonNaming;
  */
 @JsonNaming(PropertyNamingStrategies.UpperCamelCaseStrategy.class)
 public class Actions {
+
     private String Name;
     private String Settings;
 
@@ -30,5 +31,13 @@ public class Actions {
 
     public void setSettings(String settings) {
         Settings = settings;
+    }
+
+    @Override
+    public String toString() {
+        return "Actions{" +
+                "Name='" + Name + '\'' +
+                ", Settings='" + Settings + '\'' +
+                '}';
     }
 }

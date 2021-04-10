@@ -62,4 +62,15 @@ public class Manifest {
     public void setVersion(String version) {
         this.version = version;
     }
+
+    @Override
+    public String toString() {
+        return "Manifest{" +
+                "actions=" + actions +
+                ", deviceModel='" + deviceModel + '\'' +
+                ", deviceUUID='" + deviceUUID + '\'' +
+                ", name='" + name + '\'' +
+                ", version='" + version + '\'' +
+                '}';
+    }
 }
