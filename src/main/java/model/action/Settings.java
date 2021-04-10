@@ -1,8 +1,9 @@
-package model;
+package model.action;
 
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import model.routine.Routine;
+import model.routine.RoutineAlt;
 
 import java.util.Collections;
 import java.util.List;

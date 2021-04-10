@@ -2,4 +2,4 @@
 
 target/*
 
-src/main/resources/templates/*
+src/main/resources/templates/configuration/*

@@ -2,8 +2,7 @@ package model.routine;
 
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
-import model.RoutineSettings;
-import model.State;
+import model.common.State;
 
 import java.util.List;
 

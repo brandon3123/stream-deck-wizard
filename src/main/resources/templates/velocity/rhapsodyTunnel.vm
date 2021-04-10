@@ -1,0 +1,5 @@
+#! /usr/local/bin/expect
+spawn ssh $user@$rootHost -L $prodRhapPort:$prodRhapHost:8081 -L $betaRhapPort:$betaRhapHost:8081
+expect "*?assword:*"
+send "$password\r"
+interact

@@ -1,4 +1,4 @@
-package model;
+package model.routine;
 
 public class RoutineSettings {
 

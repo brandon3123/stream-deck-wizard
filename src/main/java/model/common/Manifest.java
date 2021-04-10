@@ -1,4 +1,4 @@
-package model;
+package model.common;
 
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
@@ -15,7 +15,7 @@ public class Manifest {
     private String name;
     private String version;
 
-    public Manifest(model.Actions actions, String deviceModel, String deviceUUID, String name, String version) {
+    public Manifest(Actions actions, String deviceModel, String deviceUUID, String name, String version) {
         this.actions = actions;
         this.deviceModel = deviceModel;
         this.deviceUUID = deviceUUID;
@@ -23,11 +23,11 @@ public class Manifest {
         this.version = version;
     }
 
-    public model.Actions getActions() {
+    public Actions getActions() {
         return actions;
     }
 
-    public void setActions(model.Actions actions) {
+    public void setActions(Actions actions) {
         this.actions = actions;
     }
 

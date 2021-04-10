@@ -2,8 +2,7 @@ package model.action;
 
 import enums.name.action.ActionName;
 import enums.uuid.MultiActionUUID;
-import model.Settings;
-import model.State;
+import model.common.State;
 
 import java.util.List;
 
