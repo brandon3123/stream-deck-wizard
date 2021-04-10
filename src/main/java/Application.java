@@ -23,7 +23,7 @@ public class Application {
     public static void main(String args[]) throws IOException {
         ObjectMapper objectMapper = new ObjectMapper();
 
-        File mtlRhap = new File("src/main/resources/templates/rhapsodyConfig/mtlRhap.json");
+        File mtlRhap = new File("src/main/resources/templates/configuration/rhapsody/mtlRhap.json");
 
         RhapsodyConsole rhapsodyConsole = objectMapper.readValue(mtlRhap, RhapsodyConsole.class);
 
@@ -47,7 +47,7 @@ public class Application {
 
 
         StringWriter stringWriter = new StringWriter();
-        FileWriter fileWriter = new FileWriter("src/main/resources/output.sh");
+        FileWriter fileWriter = new FileWriter("src/main/resources/testRhapTunnel.sh");
         template.merge(velocityContext, fileWriter);
 
         System.out.println(stringWriter);
