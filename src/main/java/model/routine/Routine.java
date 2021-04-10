@@ -1,21 +1,25 @@
-package model;
+package model.routine;
 
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
+import model.RoutineSettings;
+import model.State;
 
 import java.util.List;
 
 @JsonNaming(PropertyNamingStrategies.UpperCamelCaseStrategy.class)
-public class Action {
+public abstract class Routine {
 
     private String name;
-    private Settings settings;
-    private int state;
+    private int overrideState;
+    private RoutineSettings settings;
+    private String state;
     private List<State> states;
     private String uuid;
 
-    public Action(String name, Settings settings, int state, List<State> states, String uuid) {
+    public Routine(String name, int overrideState, RoutineSettings settings, String state, List<State> states, String uuid) {
         this.name = name;
+        this.overrideState = overrideState;
         this.settings = settings;
         this.state = state;
         this.states = states;
@@ -30,19 +34,27 @@ public class Action {
         this.name = name;
     }
 
-    public Settings getSettings() {
+    public int getOverrideState() {
+        return overrideState;
+    }
+
+    public void setOverrideState(int overrideState) {
+        this.overrideState = overrideState;
+    }
+
+    public RoutineSettings getSettings() {
         return settings;
     }
 
-    public void setSettings(Settings settings) {
+    public void setSettings(RoutineSettings settings) {
         this.settings = settings;
     }
 
-    public int getState() {
+    public String getState() {
         return state;
     }
 
-    public void setState(int state) {
+    public void setState(String state) {
         this.state = state;
     }
 
@@ -64,10 +76,11 @@ public class Action {
 
     @Override
     public String toString() {
-        return "Action{" +
+        return "Routine{" +
                 "name='" + name + '\'' +
+                ", overrideState=" + overrideState +
                 ", settings=" + settings +
-                ", state=" + state +
+                ", state='" + state + '\'' +
                 ", states=" + states +
                 ", uuid='" + uuid + '\'' +
                 '}';

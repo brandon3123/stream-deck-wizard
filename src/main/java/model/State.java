@@ -6,15 +6,19 @@ import com.fasterxml.jackson.databind.annotation.JsonNaming;
 @JsonNaming(PropertyNamingStrategies.UpperCamelCaseStrategy.class)
 public class State {
 
-    private String fFamily;
-    private String fSize;
-    private String fStyle;
-    private String fUnderline;
-    private String image;
-    private String title;
+    private String fFamily = "";
+    private String fSize = "";
+    private String fStyle = "";
+    private String fUnderline = "";
+    private String image = "";
+    private String title = "";
     private String titleAlignment;
-    private String titleColor;
-    private String titleShow;
+    private String titleColor = "";
+    private String titleShow = "";
+
+    public State(String titleAlignment) {
+        this.titleAlignment = titleAlignment;
+    }
 
     public State(String fFamily, String fSize, String fStyle, String fUnderline, String image, String title, String titleAlignment, String titleColor, String titleShow) {
         this.fFamily = fFamily;
