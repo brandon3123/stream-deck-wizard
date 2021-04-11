@@ -1,11 +1,11 @@
 package model.tunnel;
 
-public class RhapsodyConsole {
+import java.util.List;
 
+public class RhapsodyConsole {
     private String name;
     private ServerDetails rootTunnel;
-    private ServerDetails prod;
-    private ServerDetails beta;
+    private List<ServerDetails> portForwards;
 
     public String getName() {
         return name;
@@ -13,22 +13,6 @@ public class RhapsodyConsole {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public ServerDetails getProd() {
-        return prod;
-    }
-
-    public void setProd(ServerDetails prod) {
-        this.prod = prod;
-    }
-
-    public ServerDetails getBeta() {
-        return beta;
-    }
-
-    public void setBeta(ServerDetails beta) {
-        this.beta = beta;
     }
 
     public ServerDetails getRootTunnel() {
@@ -39,13 +23,20 @@ public class RhapsodyConsole {
         this.rootTunnel = rootTunnel;
     }
 
+    public List<ServerDetails> getPortForwards() {
+        return portForwards;
+    }
+
+    public void setPortForwards(List<ServerDetails> portForwards) {
+        this.portForwards = portForwards;
+    }
+
     @Override
     public String toString() {
         return "RhapsodyConsole{" +
                 "name='" + name + '\'' +
                 ", rootTunnel=" + rootTunnel +
-                ", prod=" + prod +
-                ", beta=" + beta +
+                ", portForwards=" + portForwards +
                 '}';
     }
 }

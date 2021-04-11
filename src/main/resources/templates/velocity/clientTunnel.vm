@@ -1,0 +1,8 @@
+#! /usr/local/bin/expect
+
+spawn ssh $rootUser@$rootHost -t ssh $clientUser@$clientHost
+expect "*?assword:*"
+send "$rootPassword\r"
+expect "*?assword:*"
+send "$clientPassword\r"
+interact

@@ -1,5 +1,7 @@
 #! /usr/local/bin/expect
-spawn ssh $user@$rootHost -L $prodRhapPort:$prodRhapHost:8081 -L $betaRhapPort:$betaRhapHost:8081
+
+spawn ssh $rootUser@$rootHost#foreach($portForward in $portForwards) -L $portForward.getPort():$portForward.getHost():8081#end
+
 expect "*?assword:*"
-send "$password\r"
+send "$rootPassword\r"
 interact
