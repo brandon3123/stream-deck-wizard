@@ -1,5 +1,6 @@
 package model.action;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import model.common.State;
@@ -7,7 +8,7 @@ import model.common.State;
 import java.util.List;
 
 @JsonNaming(PropertyNamingStrategies.UpperCamelCaseStrategy.class)
-public abstract  class Action {
+public abstract class Action {
 
     private String name;
     private Settings settings;
@@ -59,6 +60,7 @@ public abstract  class Action {
         return uuid;
     }
 
+    @JsonProperty(value = "UUID")
     public void setUuid(String uuid) {
         this.uuid = uuid;
     }

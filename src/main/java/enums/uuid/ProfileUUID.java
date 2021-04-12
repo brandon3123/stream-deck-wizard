@@ -1,7 +1,8 @@
 package enums.uuid;
 
 public enum ProfileUUID {
-    BACK_TO_PARENT("com.elgato.streamdeck.profile.backtoparent");
+    BACK_TO_PARENT("com.elgato.streamdeck.profile.backtoparent"),
+    OPEN_CHILD("com.elgato.streamdeck.profile.openchild");
 
     private String uuid;
 

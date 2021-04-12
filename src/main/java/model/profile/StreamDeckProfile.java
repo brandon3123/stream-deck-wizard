@@ -1,5 +1,8 @@
 package model.profile;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties(value = "realLocation")
 public abstract class StreamDeckProfile {
     private String name;
     private String profileLocation;
