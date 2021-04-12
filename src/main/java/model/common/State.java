@@ -12,9 +12,13 @@ public class State {
     private String fUnderline = "";
     private String image = "";
     private String title = "";
-    private String titleAlignment;
+    private String titleAlignment = "";
     private String titleColor = "";
     private String titleShow = "";
+
+    public State() {
+
+    }
 
     public State(String titleAlignment) {
         this.titleAlignment = titleAlignment;

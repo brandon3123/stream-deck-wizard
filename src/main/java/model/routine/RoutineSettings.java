@@ -1,5 +1,8 @@
 package model.routine;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class RoutineSettings {
 
     private boolean openInBrowser;
@@ -9,6 +12,10 @@ public class RoutineSettings {
     public RoutineSettings(boolean openInBrowser, String path, long delay) {
         this.openInBrowser = openInBrowser;
         this.path = path;
+        this.delay = delay;
+    }
+
+    public RoutineSettings(long delay) {
         this.delay = delay;
     }
 

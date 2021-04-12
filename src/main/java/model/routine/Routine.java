@@ -1,5 +1,7 @@
 package model.routine;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import model.common.State;
@@ -7,16 +9,17 @@ import model.common.State;
 import java.util.List;
 
 @JsonNaming(PropertyNamingStrategies.UpperCamelCaseStrategy.class)
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public abstract class Routine {
 
     private String name;
     private int overrideState;
     private RoutineSettings settings;
-    private String state;
+    private int state;
     private List<State> states;
     private String uuid;
 
-    public Routine(String name, int overrideState, RoutineSettings settings, String state, List<State> states, String uuid) {
+    public Routine(String name, int overrideState, RoutineSettings settings, int state, List<State> states, String uuid) {
         this.name = name;
         this.overrideState = overrideState;
         this.settings = settings;
@@ -49,11 +52,11 @@ public abstract class Routine {
         this.settings = settings;
     }
 
-    public String getState() {
+    public int getState() {
         return state;
     }
 
-    public void setState(String state) {
+    public void setState(int state) {
         this.state = state;
     }
 
@@ -69,6 +72,7 @@ public abstract class Routine {
         return uuid;
     }
 
+    @JsonProperty(value = "UUID")
     public void setUuid(String uuid) {
         this.uuid = uuid;
     }

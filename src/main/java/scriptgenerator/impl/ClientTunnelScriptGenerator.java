@@ -1,6 +1,7 @@
 package scriptgenerator.impl;
 
 import enums.velocity.VelocityParameter;
+import model.common.Manifest;
 import model.profile.ClientTunnelProfile;
 import model.tunnel.ClientServer;
 import model.tunnel.ClientTunnel;
@@ -25,7 +26,7 @@ public class ClientTunnelScriptGenerator implements ScriptGeneratorService<Clien
     private static final Logger log = Logger.getLogger(ClientTunnelScriptGenerator.class.getSimpleName());
 
     @Override
-    public void generateTunnelScripts(ClientTunnelProfile profile, File topDirectory) {
+    public void generateTunnelScripts(ClientTunnelProfile profile, File topDirectory, Manifest manifest) {
         if (CollectionUtils.isNotEmpty(profile.getClientTunnels())) {
             Template template = scriptTemplate();
 

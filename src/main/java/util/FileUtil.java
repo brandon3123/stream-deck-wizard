@@ -16,4 +16,14 @@ public class FileUtil {
             directory.mkdir();
         }
     }
+
+    public static void createProfilesDirectoryIfNotPresentAtPath(File path) {
+        File profiles = new File(path, "Profiles");
+        createDirectoryIfNotPresent(profiles);
+    }
+
+    public static File getProfilesDirectoryInPath(File path) {
+        return getDirectoryInPath(path, "Profiles");
+    }
+
 }

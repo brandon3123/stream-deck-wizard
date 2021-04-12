@@ -1,7 +1,9 @@
 package enums.name.routine;
 
 public enum RoutineName {
-    OPEN("Open");
+    OPEN("Open"),
+    DElAY("Delay"),
+    WEBSITE("Website");
 
     private String name;
 
