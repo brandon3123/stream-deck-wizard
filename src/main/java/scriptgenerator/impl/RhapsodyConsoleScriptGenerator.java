@@ -2,8 +2,6 @@ package scriptgenerator.impl;
 
 import enums.velocity.VelocityParameter;
 import model.action.Action;
-import model.action.MultiAction;
-import model.action.RhapsodyConsoleMultiAction;
 import model.common.Actions;
 import model.common.Manifest;
 import model.profile.RhapsodyConsoleProfile;
@@ -14,7 +12,6 @@ import org.apache.velocity.Template;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.VelocityEngine;
 import scriptgenerator.ScriptGeneratorService;
-import service.ActionService;
 import service.ManifestService;
 import service.RhapsodyActionService;
 import util.FileUtil;
@@ -22,9 +19,14 @@ import util.FileUtil;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.attribute.PosixFilePermission;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
 import java.util.logging.Logger;
 
 public class RhapsodyConsoleScriptGenerator implements ScriptGeneratorService<RhapsodyConsoleProfile> {
@@ -82,6 +84,11 @@ public class RhapsodyConsoleScriptGenerator implements ScriptGeneratorService<Rh
 
                 try(FileWriter fileWriter = new FileWriter(rhapsodyScriptPath)) {
                     template.merge(context, fileWriter);
+                    Path path = Paths.get(rhapsodyScriptPath);
+                    Set<PosixFilePermission> posixFilePermissions = Files.getPosixFilePermissions(path);
+                    posixFilePermissions.add(PosixFilePermission.OWNER_EXECUTE);
+                    Files.setPosixFilePermissions(path, posixFilePermissions);
+
                 } catch (IOException e) {
                     log.warning(Arrays.toString(e.getStackTrace()));
                 }
