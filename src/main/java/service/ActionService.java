@@ -3,7 +3,6 @@ package service;
 import model.action.Action;
 import model.action.BackToParent;
 import model.action.OpenChild;
-import model.action.RhapsodyConsoleMultiAction;
 import model.action.Settings;
 import model.common.State;
 
@@ -14,13 +13,19 @@ public class ActionService {
     public Action openChildAction(String profileUUID, String title) {
         OpenChild openChild = new OpenChild(
                 new Settings(profileUUID),
-                Arrays.asList(new State("", "11", "", "off", "", title, "bottom", "", "show"))
-        );
+                Arrays.asList(State
+                        .builder()
+                        .title(title)
+                        .fSize("11")
+                        .fUnderline("off")
+                        .titleAlignment("bottom")
+                        .titleShow("show")
+                        .build()));
         return openChild;
     }
 
     public Action backToParentAction() {
-        BackToParent backToParent = new BackToParent(null, Arrays.asList(new State("bottom")));
+        BackToParent backToParent = new BackToParent(null, Arrays.asList(State.builder().titleAlignment("bottom").build()));
         return backToParent;
     }
 }

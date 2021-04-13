@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
+import enums.manifest.JsonField;
 import model.common.State;
 
 import java.util.List;
@@ -72,7 +73,7 @@ public abstract class Routine {
         return uuid;
     }
 
-    @JsonProperty(value = "UUID")
+    @JsonProperty(value = JsonField.JsonFieldConstant.UUID)
     public void setUuid(String uuid) {
         this.uuid = uuid;
     }

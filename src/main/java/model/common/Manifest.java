@@ -2,6 +2,7 @@ package model.common;
 
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
+import util.DotEnvUtil;
 
 /**
  * Stream Deck uses an upper camel case strategy.
@@ -10,17 +11,14 @@ import com.fasterxml.jackson.databind.annotation.JsonNaming;
 public class Manifest {
 
     private Actions actions;
-    private String deviceModel;
-    private String deviceUUID;
+    private String deviceModel = DotEnvUtil.getDeviceModel();
+    private String deviceUUID = DotEnvUtil.getDeviceUUID();
     private String name;
-    private String version;
+    private String version = "1.0";
 
-    public Manifest(Actions actions, String deviceModel, String deviceUUID, String name, String version) {
+    public Manifest(Actions actions, String name) {
         this.actions = actions;
-        this.deviceModel = deviceModel;
-        this.deviceUUID = deviceUUID;
         this.name = name;
-        this.version = version;
     }
 
     public Actions getActions() {

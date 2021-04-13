@@ -13,7 +13,7 @@ public class LaunchRhapsodyConsoleBrowserRoutine extends Routine{
                 0,
                 new RoutineSettings(true, "http://localhost:8081", 0),
                 0,
-                Arrays.asList(new State()),
+                Arrays.asList(State.builder().build()),
                 SystemUUID.WEBSITE.uuid()
         );
     }

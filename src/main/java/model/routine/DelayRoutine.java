@@ -5,7 +5,6 @@ import enums.uuid.MultiActionUUID;
 import model.common.State;
 
 import java.util.Arrays;
-import java.util.List;
 
 public class DelayRoutine extends Routine {
     public DelayRoutine() {
@@ -13,7 +12,7 @@ public class DelayRoutine extends Routine {
                 0,
                 new RoutineSettings(5500),
                 0,
-                Arrays.asList(new State()),
+                Arrays.asList(State.builder().build()),
                 MultiActionUUID.DELAY.uuid());
     }
 }

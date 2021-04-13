@@ -12,9 +12,10 @@ public class RhapsodyConsoleTunnelRoutine extends Routine {
                 0,
                 new RoutineSettings(true, "." + scriptPath, 0),
                 0,
-                Arrays.asList(
-                        new State("", "", "", "", "", title, "", "", "")
-                ),
+                Arrays.asList(State
+                        .builder()
+                        .title(title)
+                        .build()),
                 SystemUUID.OPEN.uuid());
     }
 }

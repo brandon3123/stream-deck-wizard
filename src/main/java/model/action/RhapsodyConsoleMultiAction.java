@@ -20,6 +20,6 @@ public class RhapsodyConsoleMultiAction extends MultiAction {
                         )
                 ),
                 0,
-                Arrays.asList(new State()));
+                Arrays.asList(State.builder().build()));
     }
 }

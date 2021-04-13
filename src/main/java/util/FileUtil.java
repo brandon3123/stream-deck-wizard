@@ -1,5 +1,7 @@
 package util;
 
+import enums.name.folder.FolderName;
+
 import java.io.File;
 
 public class FileUtil {
@@ -18,12 +20,11 @@ public class FileUtil {
     }
 
     public static void createProfilesDirectoryIfNotPresentAtPath(File path) {
-        File profiles = new File(path, "Profiles");
+        File profiles = new File(path, FolderName.PROJECTS.folderName());
         createDirectoryIfNotPresent(profiles);
     }
 
     public static File getProfilesDirectoryInPath(File path) {
-        return getDirectoryInPath(path, "Profiles");
+        return getDirectoryInPath(path, FolderName.PROJECTS.folderName());
     }
-
 }

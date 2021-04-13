@@ -2,7 +2,6 @@ package service;
 
 import model.action.Action;
 import model.action.RhapsodyConsoleMultiAction;
-import model.common.Actions;
 
 public class RhapsodyActionService extends ActionService {
 

@@ -1,5 +1,6 @@
 package scriptgenerator.impl;
 
+import enums.name.folder.FolderName;
 import model.profile.RhapsodyConsoleProfile;
 import model.tunnel.RhapsodyConsole;
 import org.apache.commons.collections.CollectionUtils;
@@ -15,7 +16,7 @@ public class RhapsodyConsoleProfileGenerator implements StreamDeckProfileGenerat
         List<RhapsodyConsole> rhapsodyConsoles = profile.getRhapsodyConsoles();
 
         if (CollectionUtils.isNotEmpty(rhapsodyConsoles)) {
-            File rhapsodyDirectory = FileUtil.getDirectoryInPath(topPath, "Rhapsody");
+            File rhapsodyDirectory = FileUtil.getDirectoryInPath(topPath, FolderName.RHAPSODY.folderName());
             FileUtil.createProfilesDirectoryIfNotPresentAtPath(topPath);
 
             for (RhapsodyConsole rhapsodyConsole : rhapsodyConsoles) {

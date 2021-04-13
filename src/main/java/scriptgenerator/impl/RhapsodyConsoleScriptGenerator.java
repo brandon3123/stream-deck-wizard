@@ -1,5 +1,8 @@
 package scriptgenerator.impl;
 
+import enums.name.action.ActionName;
+import enums.name.folder.FolderName;
+import enums.name.profile.ProfileName;
 import enums.velocity.VelocityParameter;
 import model.action.Action;
 import model.common.Actions;
@@ -45,22 +48,22 @@ public class RhapsodyConsoleScriptGenerator implements ScriptGeneratorService<Rh
             FileUtil.createProfilesDirectoryIfNotPresentAtPath(topPath);
             File topProfileDirectory = FileUtil.getProfilesDirectoryInPath(topPath);
 
-            File rhapsodyDirectory = FileUtil.getDirectoryInPath(topProfileDirectory, "Rhapsody.sdProfile");
+            File rhapsodyDirectory = FileUtil.getDirectoryInPath(topProfileDirectory, ProfileName.RHAPSODY.folderName());
             FileUtil.createDirectoryIfNotPresent(rhapsodyDirectory);
 
             Actions topManifestActions = Actions.builder()
-                    .action0_1(actionService.openChildAction("Rhapsody", "Rhapsody"))
+                    .action0_1(actionService.openChildAction(FolderName.RHAPSODY.folderName(), FolderName.SCRIPTS.folderName()))
                     .build();
 
             topManifest.setActions(topManifestActions);
 
-            File zero_one = FileUtil.getDirectoryInPath(topPath, "0,1");
+            File zero_one = FileUtil.getDirectoryInPath(topPath, ActionName.ACTION_0_1.getName());
             FileUtil.createDirectoryIfNotPresent(zero_one);
 
-            File rhapsodyScriptsDirectory = FileUtil.getDirectoryInPath(rhapsodyDirectory, "scripts");
+            File rhapsodyScriptsDirectory = FileUtil.getDirectoryInPath(rhapsodyDirectory, FolderName.SCRIPTS.folderName());
             FileUtil.createDirectoryIfNotPresent(rhapsodyScriptsDirectory);
 
-            Manifest rhapsodyManifest = new Manifest(null, topManifest.getDeviceModel(), topManifest.getDeviceUUID(), "Rhapsody Profile", topManifest.getVersion());
+            Manifest rhapsodyManifest = new Manifest(null, "Rhapsody Profile");
 
             Template template = scriptTemplate();
 
@@ -88,7 +91,6 @@ public class RhapsodyConsoleScriptGenerator implements ScriptGeneratorService<Rh
                     Set<PosixFilePermission> posixFilePermissions = Files.getPosixFilePermissions(path);
                     posixFilePermissions.add(PosixFilePermission.OWNER_EXECUTE);
                     Files.setPosixFilePermissions(path, posixFilePermissions);
-
                 } catch (IOException e) {
                     log.warning(Arrays.toString(e.getStackTrace()));
                 }
@@ -103,7 +105,7 @@ public class RhapsodyConsoleScriptGenerator implements ScriptGeneratorService<Rh
                 rhapsodyManifest.setActions(actions);
             }
 
-            File zero_one_rhapsody = FileUtil.getDirectoryInPath(rhapsodyDirectory, "0,1");
+            File zero_one_rhapsody = FileUtil.getDirectoryInPath(rhapsodyDirectory, ActionName.ACTION_0_1.getName());
             FileUtil.createDirectoryIfNotPresent(zero_one_rhapsody);
 
             manifestService.createManifestAtPath(rhapsodyDirectory, rhapsodyManifest);

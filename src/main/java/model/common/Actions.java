@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
+import enums.name.action.ActionName;
 import model.action.Action;
 
 /**
@@ -13,39 +14,39 @@ import model.action.Action;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Actions {
 
-    @JsonProperty(value = "0,0")
+    @JsonProperty(value = ActionName.ActionNameConstant.ACTION_0_0)
     private final Action action0_0;
-    @JsonProperty(value = "0,1")
+    @JsonProperty(value = ActionName.ActionNameConstant.ACTION_0_1)
     private final Action action0_1;
-    @JsonProperty(value = "0,2")
+    @JsonProperty(value = ActionName.ActionNameConstant.ACTION_0_2)
     private final Action action0_2;
 
-    @JsonProperty(value = "1,0")
+    @JsonProperty(value = ActionName.ActionNameConstant.ACTION_1_0)
     private final Action action1_0;
-    @JsonProperty(value = "1,1")
+    @JsonProperty(value = ActionName.ActionNameConstant.ACTION_1_1)
     private final Action action1_1;
-    @JsonProperty(value = "1,2")
+    @JsonProperty(value = ActionName.ActionNameConstant.ACTION_1_2)
     private final Action action1_2;
 
-    @JsonProperty(value = "2,0")
+    @JsonProperty(value = ActionName.ActionNameConstant.ACTION_2_0)
     private final Action action2_0;
-    @JsonProperty(value = "2,1")
+    @JsonProperty(value = ActionName.ActionNameConstant.ACTION_2_1)
     private final Action action2_1;
-    @JsonProperty(value = "2,2")
+    @JsonProperty(value = ActionName.ActionNameConstant.ACTION_2_2)
     private final Action action2_2;
 
-    @JsonProperty(value = "3,0")
+    @JsonProperty(value = ActionName.ActionNameConstant.ACTION_3_0)
     private final Action action3_0;
-    @JsonProperty(value = "3,1")
+    @JsonProperty(value = ActionName.ActionNameConstant.ACTION_3_1)
     private final Action action3_1;
-    @JsonProperty(value = "3,2")
+    @JsonProperty(value = ActionName.ActionNameConstant.ACTION_3_2)
     private final Action action3_2;
 
-    @JsonProperty(value = "4,0")
+    @JsonProperty(value = ActionName.ActionNameConstant.ACTION_4_0)
     private final Action action4_0;
-    @JsonProperty(value = "4,1")
+    @JsonProperty(value = ActionName.ActionNameConstant.ACTION_4_1)
     private final Action action4_1;
-    @JsonProperty(value = "4,2")
+    @JsonProperty(value = ActionName.ActionNameConstant.ACTION_4_2)
     private final Action action4_2;
     
     private Actions(Builder builder) {
