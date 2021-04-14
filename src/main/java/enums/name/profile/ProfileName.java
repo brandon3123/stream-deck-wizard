@@ -2,7 +2,8 @@ package enums.name.profile;
 
 public enum ProfileName {
     POST_FIX(".sdProfile"),
-    RHAPSODY("Rhapsody");
+    RHAPSODY("Rhapsody" + POST_FIX.profileName),
+    CLIENTS("Clients" + POST_FIX.profileName);
 
     private String profileName;
 
@@ -10,7 +11,7 @@ public enum ProfileName {
         this.profileName = profileName;
     }
 
-    public String folderName() {
-        return profileName + POST_FIX.profileName;
+    public String profileName() {
+        return profileName;
     }
 }

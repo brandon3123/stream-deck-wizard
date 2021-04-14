@@ -24,44 +24,39 @@ public class RhapsodyConsoleProfileService {
         List<RhapsodyConsole> rhapsodyConsoles = profile.getRhapsodyConsoles();
 
         if (CollectionUtils.isNotEmpty(rhapsodyConsoles)) {
-            FileUtil.createProfilesDirectoryIfNotPresentAtPath(topPath);
-            File topProfileDirectory = FileUtil.getProfilesDirectoryInPath(topPath);
+            File topProfileDirectory = FileUtil.createProfilesDirectoryIfNotPresentAtPath(topPath);
 
-            File rhapsodyDirectory = FileUtil.getDirectoryInPath(topProfileDirectory, ProfileName.RHAPSODY.folderName());
-            FileUtil.createDirectoryIfNotPresent(rhapsodyDirectory);
+            File rhapsodyDirectory = FileUtil.createDirectoryIfNotPresentAtPath(topProfileDirectory, ProfileName.RHAPSODY.profileName());
 
             Actions topManifestActions = Actions.builder()
-                    .action0_1(actionService.openChildAction(FolderName.RHAPSODY.folderName(), FolderName.SCRIPTS.folderName()))
+                    .action1_0(actionService.openChildAction(FolderName.RHAPSODY.folderName(), FolderName.RHAPSODY.folderName()))
                     .build();
 
             topManifest.setActions(topManifestActions);
 
-            File zero_one = FileUtil.getDirectoryInPath(topPath, ActionName.ACTION_0_1.getName());
-            FileUtil.createDirectoryIfNotPresent(zero_one);
+            FileUtil.createDirectoryIfNotPresentAtPath(topPath, ActionName.ACTION_1_0.getName());
 
-            File rhapsodyScriptsDirectory = FileUtil.getDirectoryInPath(rhapsodyDirectory, FolderName.SCRIPTS.folderName());
-            FileUtil.createDirectoryIfNotPresent(rhapsodyScriptsDirectory);
+            File rhapsodyScriptsDirectory = FileUtil.createDirectoryIfNotPresentAtPath(rhapsodyDirectory, FolderName.SCRIPTS.folderName());
 
             Manifest rhapsodyManifest = new Manifest(null, "Rhapsody Profile");
+
+            Actions.Builder actionsBuilder = Actions
+                    .builder()
+                    .action0_0(actionService.backToParentAction());
 
             for (RhapsodyConsole rhapsodyConsole : rhapsodyConsoles) {
                 File specificConsoleDirectory = FileUtil.getDirectoryInPath(rhapsodyScriptsDirectory, rhapsodyConsole.getName());
                 FileUtil.createDirectoryIfNotPresent(specificConsoleDirectory);
-
                 File rhapsodyTunnelScript = scriptGenerator.generateScript(rhapsodyConsole, specificConsoleDirectory);
-
                 Action rhapsodyAction = actionService.rhapsodyConsoleMultiAction(rhapsodyTunnelScript.getAbsolutePath(), rhapsodyConsole.getName());
-
-                Actions actions = Actions
-                        .builder()
-                        .action0_1(rhapsodyAction)
-                        .build();
-
-                rhapsodyManifest.setActions(actions);
+                actionsBuilder = actionsBuilder.nextSpot(rhapsodyAction);
             }
 
-            File zero_one_rhapsody = FileUtil.getDirectoryInPath(rhapsodyDirectory, ActionName.ACTION_0_1.getName());
-            FileUtil.createDirectoryIfNotPresent(zero_one_rhapsody);
+            Actions actions = actionsBuilder.build();
+
+            FileUtil.buildDirectoriesAtPathForActions(rhapsodyDirectory, actions);
+
+            rhapsodyManifest.setActions(actions);
 
             manifestService.createManifestAtPath(rhapsodyDirectory, rhapsodyManifest);
         }

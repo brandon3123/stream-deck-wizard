@@ -1,8 +1,9 @@
 package enums.name.folder;
 
 public enum FolderName {
-    PROJECTS("Projects"),
+    PROFILES("Profiles"),
     RHAPSODY("Rhapsody"),
+    CLIENTS("Clients"),
     SCRIPTS("scripts");
 
     private String folderName;
