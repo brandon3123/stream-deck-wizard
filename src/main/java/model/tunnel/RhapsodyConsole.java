@@ -2,7 +2,7 @@ package model.tunnel;
 
 import java.util.List;
 
-public class RhapsodyConsole {
+public class RhapsodyConsole  {
     private String name;
     private ServerDetails rootTunnel;
     private List<ServerDetails> portForwards;

@@ -2,14 +2,11 @@ package service;
 
 import model.common.Manifest;
 import model.profile.impl.StrataHealthProfile;
-import scriptgenerator.impl.ClientTunnelScriptGenerator;
-import scriptgenerator.impl.RhapsodyConsoleScriptGenerator;
 import util.FileUtil;
 
 import java.io.File;
 
 public class StreamDeckProfileService {
-
     private ManifestService manifestService = new ManifestService();
 
     public void createProfileFromConfig(StrataHealthProfile profile) {
@@ -19,14 +16,11 @@ public class StreamDeckProfileService {
 
         FileUtil.createDirectoryIfNotPresent(testDirectory);
 
-        RhapsodyConsoleScriptGenerator rhapsodyGenerator = new RhapsodyConsoleScriptGenerator();
-        rhapsodyGenerator.generateTunnelScripts(profile, testDirectory, manifest);
+        RhapsodyConsoleProfileService rhapsodyGenerator = new RhapsodyConsoleProfileService();
+        rhapsodyGenerator.createRhapsodyProfile(profile, testDirectory, manifest);
 
-//        RhapsodyConsoleProfileGenerator rhapsodyProfileGenerator = new RhapsodyConsoleProfileGenerator();
-//        rhapsodyProfileGenerator.generateProfileStructureForConfig(profile, testDirectory);
-
-        ClientTunnelScriptGenerator clientTunnelGenerator = new ClientTunnelScriptGenerator();
-//        clientTunnelGenerator.generateTunnelScripts(profile, testDirectory, manifest);
+        ClientTunnelProfileService clientTunnelProfileService = new ClientTunnelProfileService();
+        clientTunnelProfileService.createClientTunnelProfile(profile, testDirectory, manifest);
 
         manifestService.createManifestAtPath(testDirectory, manifest);
     }
