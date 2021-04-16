@@ -4,6 +4,7 @@ import enums.name.action.ActionName;
 import enums.name.folder.FolderName;
 import enums.name.profile.ProfileName;
 import model.action.Action;
+import model.action.ClientTunnelMultiAction;
 import model.common.Actions;
 import model.common.Manifest;
 import model.profile.ClientTunnelProfile;
@@ -15,6 +16,7 @@ import scriptgenerator.impl.ClientTunnelScriptGenerator;
 import util.FileUtil;
 
 import java.io.File;
+import java.util.ArrayList;
 
 public class ClientTunnelProfileService {
     private ClientTunnelScriptGenerator scriptGenerator = new ClientTunnelScriptGenerator();
@@ -26,8 +28,6 @@ public class ClientTunnelProfileService {
             File profilesTopDirectory = FileUtil.createProfilesDirectoryIfNotPresentAtPath(topPath);
             File clientTunnelsProfileDirectory = FileUtil.createDirectoryIfNotPresentAtPath(profilesTopDirectory, ProfileName.CLIENTS.profileName());
 
-            File clientsTopProfileDirectory = FileUtil.createProfilesDirectoryIfNotPresentAtPath(clientTunnelsProfileDirectory);
-
             // Top manifest file, move this later.
             Actions topManifestActions = Actions.builder()
                     .action0_0(actionService.openChildAction(FolderName.CLIENTS.folderName(), FolderName.CLIENTS.folderName()))
@@ -38,40 +38,54 @@ public class ClientTunnelProfileService {
 
             FileUtil.createDirectoryIfNotPresentAtPath(topPath, ActionName.ACTION_0_0.getName());
 
+            // Client Profiles Root Manifest
+            Actions.Builder clientProfilesRootActionsBuilder = Actions.builder()
+                    .action0_0(actionService.backToParentAction());
+
+            Manifest clientsProfilesRootManifest = new Manifest(null, FolderName.CLIENTS.folderName() + " Tunnels Profile");
+
             for (ClientTunnel clientTunnel : profile.getClientTunnels()) {
                 String clientTunnelProfileUUID = clientTunnel.getClient() + ProfileName.POST_FIX.profileName();
-                File clientProfileDirectory = FileUtil.createDirectoryIfNotPresentAtPath(clientsTopProfileDirectory, clientTunnelProfileUUID);
+                File clientProfileDirectory = FileUtil.createDirectoryIfNotPresentAtPath(profilesTopDirectory, clientTunnelProfileUUID);
 
-                File clientDirectory = FileUtil.createDirectoryIfNotPresentAtPath(clientProfileDirectory, clientTunnel.getClient());
+                // Main Client Profile Manifest Updating
+                Action openClientAction = actionService.openChildAction(clientTunnel.getClient(), clientTunnel.getClient());
+                clientProfilesRootActionsBuilder.nextSpot(openClientAction);
 
-                File clientScriptsDirectory = FileUtil.createDirectoryIfNotPresentAtPath(clientDirectory, FolderName.SCRIPTS.folderName());
+                File clientScriptsDirectory = FileUtil.createDirectoryIfNotPresentAtPath(clientProfileDirectory, FolderName.SCRIPTS.folderName());
 
-                Manifest clientsTopManifest = new Manifest(null, clientTunnel.getClient() + " Profile");
+                Manifest clientsManifest = new Manifest(null, clientTunnel.getClient() + " Profile");
 
                 Actions.Builder clientActionsBuilder = Actions
                         .builder()
                         .action0_0(actionService.backToParentAction());
 
                 // Create a new open folder action for a specific client.
-                Action openClientAction = actionService.openChildAction(clientTunnelProfileUUID, clientTunnel.getClient());
-                clientActionsBuilder = clientActionsBuilder.nextSpot(openClientAction);
-
                 for (ClientServer clientServer : clientTunnel.getTunnels()) {
                     File clientEnvironment = FileUtil.createDirectoryIfNotPresentAtPath(clientScriptsDirectory, clientServer.getEnvironment());
 
+                    ArrayList<String> scriptPaths = new ArrayList<>();
+
                     for (ServerDetails serverDetails : clientServer.getServers()) {
                         File clientTunnelScript = scriptGenerator.generateScript(clientServer, serverDetails, clientEnvironment);
+                        scriptPaths.add(clientTunnelScript.getAbsolutePath());
                     }
+
+                    ClientTunnelMultiAction clientTunnelMultiAction = new ClientTunnelMultiAction(scriptPaths, clientServer.getEnvironment());
+                    clientActionsBuilder.nextSpot(clientTunnelMultiAction);
                 }
 
-                //create buttons inside each client directory
-
+                //Create the actions/directory structure for the main clients root profile folder. Clients.sdProfile
                 Actions clientActions = clientActionsBuilder.build();
-
-                clientsTopManifest.setActions(clientActions);
-
-                manifestService.createManifestAtPath(clientProfileDirectory, clientsTopManifest);
+                FileUtil.buildDirectoriesAtPathForActions(clientProfileDirectory, clientActions);
+                clientsManifest.setActions(clientActions);
+                manifestService.createManifestAtPath(clientProfileDirectory, clientsManifest);
             }
+            //Create the actions/directory structure for the main clients root profile folder. Clients.sdProfile
+            Actions clientProfilesRootActions = clientProfilesRootActionsBuilder.build();
+            FileUtil.buildDirectoriesAtPathForActions(clientTunnelsProfileDirectory, clientProfilesRootActions);
+            clientsProfilesRootManifest.setActions(clientProfilesRootActions);
+            manifestService.createManifestAtPath(clientTunnelsProfileDirectory, clientsProfilesRootManifest);
 
         }
     }

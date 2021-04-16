@@ -6,8 +6,8 @@ import model.common.State;
 
 import java.util.Arrays;
 
-public class RhapsodyConsoleTunnelRoutine extends Routine {
-    public RhapsodyConsoleTunnelRoutine(String scriptPath, String title) {
+public class ScriptOpenAction extends Routine {
+    public ScriptOpenAction(String scriptPath, String title) {
         super(RoutineName.OPEN.getName(),
                 0,
                 new RoutineSettings(true, "." + scriptPath, 0),

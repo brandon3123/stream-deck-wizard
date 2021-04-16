@@ -3,7 +3,7 @@ package model.action;
 import model.common.State;
 import model.routine.DelayRoutine;
 import model.routine.LaunchRhapsodyConsoleBrowserRoutine;
-import model.routine.RhapsodyConsoleTunnelRoutine;
+import model.routine.ScriptOpenAction;
 
 import java.util.Arrays;
 
@@ -14,7 +14,7 @@ public class RhapsodyConsoleMultiAction extends MultiAction {
         super(
                 new Settings(
                         Arrays.asList(
-                                new RhapsodyConsoleTunnelRoutine(scriptPath, title),
+                                new ScriptOpenAction(scriptPath, title),
                                 new DelayRoutine(),
                                 new LaunchRhapsodyConsoleBrowserRoutine()
                         )

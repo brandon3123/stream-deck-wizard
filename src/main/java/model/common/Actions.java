@@ -237,63 +237,90 @@ public class Actions {
         }
 
         public Builder nextSpot(Action action) {
+            /*
+                This is a gross design. I'll pretty this up later......
+             */
+            Builder result = buildDirectoriesAtFirstRowForActionsIfOpen(action);
+            if (result == null) {
+                result = buildDirectoriesAtSecondRowForActionsIfOpen(action);
+
+                if (result == null) {
+                    result = buildDirectoriesAtThirdRowForActionsIfOpen(action);
+                }
+            }
+            return result;
+        }
+
+        private Builder buildDirectoriesAtFirstRowForActionsIfOpen(Action action) {
             if (action0_0 == null) {
                 return action0_0(action);
-            }
-
-            if (action0_1 == null) {
-                return action0_1(action);
-            }
-
-            if (action0_2 == null) {
-                return action0_2(action);
             }
 
             if (action1_0 == null) {
                 return action1_0(action);
             }
 
-            if (action1_1 == null) {
-                return action1_1(action);
-            }
-
-            if (action1_2 == null) {
-                return action1_2(action);
-            }
-
             if (action2_0 == null) {
                 return action2_0(action);
-            }
-
-            if (action2_1 == null) {
-                return action2_1(action);
-            }
-
-            if (action2_2 == null) {
-                return action2_2(action);
             }
 
             if (action3_0 == null) {
                 return action3_0(action);
             }
 
-            if (action3_1 == null) {
-                return action3_1(action);
-            }
-
-            if (action3_2 == null) {
-                return action3_2(action);
-            }
-
             if (action4_0 == null) {
                 return action4_0(action);
+            }
+
+            return null;
+        }
+
+        private Builder buildDirectoriesAtSecondRowForActionsIfOpen(Action action) {
+            if (action0_1 == null) {
+                return action0_1(action);
+            }
+
+            if (action1_1 == null) {
+                return action1_1(action);
+            }
+
+            if (action2_1 == null) {
+                return action2_1(action);
+            }
+
+            if (action3_1 == null) {
+                return action3_1(action);
             }
 
             if (action4_1 == null) {
                 return action4_1(action);
             }
 
-            return action4_2(action);
+            return null;
+        }
+
+        private Builder buildDirectoriesAtThirdRowForActionsIfOpen(Action action) {
+            if (action0_2 == null) {
+                return action0_2(action);
+            }
+
+            if (action1_2 == null) {
+                return action1_2(action);
+            }
+
+            if (action2_2 == null) {
+                return action2_2(action);
+            }
+
+            if (action3_2 == null) {
+                return action3_2(action);
+            }
+
+            if (action4_2 == null) {
+                return action4_2(action);
+            }
+
+            return null;
         }
     }
 }

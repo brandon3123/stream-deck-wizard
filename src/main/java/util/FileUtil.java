@@ -36,60 +36,73 @@ public class FileUtil {
     }
 
     public static void buildDirectoriesAtPathForActions(File path, Actions actions) {
+        //First Row Actions
+        buildDirectoriesAtFirstRowForActionsIfOpen(path, actions);
+        //Second Row Actions
+        buildDirectoriesAtSecondRowForActionsIfOpen(path, actions);
+        //Third Row Actions
+        buildDirectoriesAtThirdRowForActionsIfOpen(path, actions);
+    }
+
+    public static void buildDirectoriesAtFirstRowForActionsIfOpen(File path, Actions actions) {
         if (actions.getAction0_0() != null) {
             createDirectoryIfNotPresentAtPath(path, ActionName.ACTION_0_0.getName());
-        }
-
-        if (actions.getAction0_1() != null) {
-            createDirectoryIfNotPresentAtPath(path, ActionName.ACTION_0_1.getName());
-        }
-
-        if (actions.getAction0_2() != null) {
-            createDirectoryIfNotPresentAtPath(path, ActionName.ACTION_0_2.getName());
         }
 
         if (actions.getAction1_0() != null) {
             createDirectoryIfNotPresentAtPath(path, ActionName.ACTION_1_0.getName());
         }
 
-        if (actions.getAction1_1() != null) {
-            createDirectoryIfNotPresentAtPath(path, ActionName.ACTION_1_1.getName());
-        }
-
-        if (actions.getAction1_2() != null) {
-            createDirectoryIfNotPresentAtPath(path, ActionName.ACTION_1_2.getName());
+        if (actions.getAction3_0() != null) {
+            createDirectoryIfNotPresentAtPath(path, ActionName.ACTION_3_0.getName());
         }
 
         if (actions.getAction2_0() != null) {
             createDirectoryIfNotPresentAtPath(path, ActionName.ACTION_2_0.getName());
         }
 
-        if (actions.getAction2_1() != null) {
-            createDirectoryIfNotPresentAtPath(path, ActionName.ACTION_2_1.getName());
+        if (actions.getAction4_0() != null) {
+            createDirectoryIfNotPresentAtPath(path, ActionName.ACTION_4_0.getName());
+        }
+    }
+
+    public static void buildDirectoriesAtSecondRowForActionsIfOpen(File path, Actions actions) {
+        if (actions.getAction0_1() != null) {
+            createDirectoryIfNotPresentAtPath(path, ActionName.ACTION_0_1.getName());
         }
 
-        if (actions.getAction2_2() != null) {
-            createDirectoryIfNotPresentAtPath(path, ActionName.ACTION_2_2.getName());
-        }
-
-        if (actions.getAction3_0() != null) {
-            createDirectoryIfNotPresentAtPath(path, ActionName.ACTION_3_0.getName());
+        if (actions.getAction1_1() != null) {
+            createDirectoryIfNotPresentAtPath(path, ActionName.ACTION_1_1.getName());
         }
 
         if (actions.getAction3_1() != null) {
             createDirectoryIfNotPresentAtPath(path, ActionName.ACTION_3_1.getName());
         }
 
-        if (actions.getAction3_2() != null) {
-            createDirectoryIfNotPresentAtPath(path, ActionName.ACTION_3_2.getName());
-        }
-
-        if (actions.getAction4_0() != null) {
-            createDirectoryIfNotPresentAtPath(path, ActionName.ACTION_4_0.getName());
+        if (actions.getAction2_1() != null) {
+            createDirectoryIfNotPresentAtPath(path, ActionName.ACTION_2_1.getName());
         }
 
         if (actions.getAction4_1() != null) {
             createDirectoryIfNotPresentAtPath(path, ActionName.ACTION_4_1.getName());
+        }
+    }
+
+    public static void buildDirectoriesAtThirdRowForActionsIfOpen(File path, Actions actions) {
+        if (actions.getAction0_2() != null) {
+            createDirectoryIfNotPresentAtPath(path, ActionName.ACTION_0_2.getName());
+        }
+
+        if (actions.getAction1_2() != null) {
+            createDirectoryIfNotPresentAtPath(path, ActionName.ACTION_1_2.getName());
+        }
+
+        if (actions.getAction3_2() != null) {
+            createDirectoryIfNotPresentAtPath(path, ActionName.ACTION_3_2.getName());
+        }
+
+        if (actions.getAction2_2() != null) {
+            createDirectoryIfNotPresentAtPath(path, ActionName.ACTION_2_2.getName());
         }
 
         if (actions.getAction4_2() != null) {
