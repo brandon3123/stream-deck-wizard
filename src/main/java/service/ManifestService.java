@@ -3,6 +3,7 @@ package service;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import model.common.Manifest;
+import util.FileUtil;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -13,17 +14,22 @@ public class ManifestService {
     private ObjectMapper mapper = new ObjectMapper();
 
     public void createManifestAtPath(File path, Manifest manifest) {
-        try {
+        try ( FileWriter manifestWriter = getManifestFileWriter(path)) {
             String manifestJson = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(manifest);
-            FileWriter manifestWriter = new FileWriter(path.getAbsolutePath() + "/manifest.json");
-
             manifestWriter.write(manifestJson);
-
-            manifestWriter.close();
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void createManifestAtPathAndFolderElgatoStructure(File path, Manifest manifest) {
+        createManifestAtPath(path, manifest);
+        FileUtil.buildDirectoriesAtPathForActions(path, manifest.getActions());
+    }
+
+    private FileWriter getManifestFileWriter(File path) throws IOException {
+        return new FileWriter(path.getAbsolutePath() + "/manifest.json");
     }
 }

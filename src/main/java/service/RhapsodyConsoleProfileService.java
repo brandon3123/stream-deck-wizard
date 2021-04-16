@@ -20,7 +20,7 @@ public class RhapsodyConsoleProfileService {
     private RhapsodyActionService actionService = new RhapsodyActionService();
     private ManifestService manifestService = new ManifestService();
 
-    public void createRhapsodyProfile(RhapsodyConsoleProfile profile, File topPath, Manifest topManifest) {
+    public Action createRhapsodyProfile(RhapsodyConsoleProfile profile, File topPath) {
         List<RhapsodyConsole> rhapsodyConsoles = profile.getRhapsodyConsoles();
 
         if (CollectionUtils.isNotEmpty(rhapsodyConsoles)) {
@@ -28,17 +28,7 @@ public class RhapsodyConsoleProfileService {
 
             File rhapsodyDirectory = FileUtil.createDirectoryIfNotPresentAtPath(topProfileDirectory, ProfileName.RHAPSODY.profileName());
 
-            Actions topManifestActions = Actions.builder()
-                    .action1_0(actionService.openChildAction(FolderName.RHAPSODY.folderName(), FolderName.RHAPSODY.folderName()))
-                    .build();
-
-            topManifest.setActions(topManifestActions);
-
-            FileUtil.createDirectoryIfNotPresentAtPath(topPath, ActionName.ACTION_1_0.getName());
-
             File rhapsodyScriptsDirectory = FileUtil.createDirectoryIfNotPresentAtPath(rhapsodyDirectory, FolderName.SCRIPTS.folderName());
-
-            Manifest rhapsodyManifest = new Manifest(null, "Rhapsody Profile");
 
             Actions.Builder actionsBuilder = Actions
                     .builder()
@@ -52,13 +42,10 @@ public class RhapsodyConsoleProfileService {
                 actionsBuilder = actionsBuilder.nextSpot(rhapsodyAction);
             }
 
-            Actions actions = actionsBuilder.build();
-
-            FileUtil.buildDirectoriesAtPathForActions(rhapsodyDirectory, actions);
-
-            rhapsodyManifest.setActions(actions);
-
-            manifestService.createManifestAtPath(rhapsodyDirectory, rhapsodyManifest);
+            Manifest rhapsodyManifest = new Manifest(actionsBuilder.build(), "Rhapsody Profile");
+            manifestService.createManifestAtPathAndFolderElgatoStructure(rhapsodyDirectory, rhapsodyManifest);
         }
+
+        return actionService.openChildAction(FolderName.RHAPSODY.folderName(), FolderName.RHAPSODY.folderName());
     }
 }
