@@ -6,7 +6,7 @@ import java.io.File;
 import java.io.IOException;
 
 public class Application {
-    private static final String STRATA_PROFILE = "src/main/resources/templates/configuration/profiles/strataProfile.json";
+    private static final String STRATA_PROFILE = "src/main/resources/templates/configuration/profiles/strata/strataProfile.json";
 
     public static void main(String[] args) throws IOException {
         ObjectMapper objectMapper = new ObjectMapper();
