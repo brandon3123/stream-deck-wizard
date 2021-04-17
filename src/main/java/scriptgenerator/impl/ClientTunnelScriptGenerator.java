@@ -1,8 +1,8 @@
 package scriptgenerator.impl;
 
 import enums.velocity.VelocityParameter;
-import model.tunnel.ClientServer;
-import model.tunnel.ServerDetails;
+import model.tunnel.client.ClientServer;
+import model.tunnel.common.ServerDetails;
 import org.apache.velocity.VelocityContext;
 import scriptgenerator.AbstractScriptGeneratorService;
 

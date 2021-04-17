@@ -3,8 +3,8 @@ package model.profile.impl;
 import model.profile.ClientTunnelProfile;
 import model.profile.RhapsodyConsoleProfile;
 import model.profile.StreamDeckProfile;
-import model.tunnel.ClientTunnel;
-import model.tunnel.RhapsodyConsole;
+import model.tunnel.client.ClientTunnel;
+import model.tunnel.rhapsody.RhapsodyConsole;
 
 import java.util.List;
 

@@ -1,18 +1,19 @@
-package model.routine;
+package model.routine.system;
 
 import enums.name.routine.RoutineName;
 import enums.uuid.SystemUUID;
 import model.common.State;
+import model.routine.common.Routine;
+import model.routine.common.RoutineSettings;
 
 import java.util.Arrays;
 
-public class LaunchRhapsodyConsoleBrowserRoutine extends Routine{
-    public LaunchRhapsodyConsoleBrowserRoutine() {
+public class WebsiteBrowserRoutine extends Routine {
+
+    public WebsiteBrowserRoutine(String url) {
         super(
                 RoutineName.WEBSITE.getName(),
-                0,
-                new RoutineSettings(true, "http://localhost:8081", 0),
-                0,
+                new RoutineSettings(true, url, 0),
                 Arrays.asList(State.builder().build()),
                 SystemUUID.WEBSITE.uuid()
         );

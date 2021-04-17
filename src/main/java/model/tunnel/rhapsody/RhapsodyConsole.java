@@ -1,4 +1,6 @@
-package model.tunnel;
+package model.tunnel.rhapsody;
+
+import model.tunnel.common.ServerDetails;
 
 import java.util.List;
 

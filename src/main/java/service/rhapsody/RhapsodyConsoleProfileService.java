@@ -1,15 +1,16 @@
-package service;
+package service.rhapsody;
 
-import enums.name.action.ActionName;
 import enums.name.folder.FolderName;
 import enums.name.profile.ProfileName;
-import model.action.Action;
+import model.action.common.Action;
 import model.common.Actions;
 import model.common.Manifest;
 import model.profile.RhapsodyConsoleProfile;
-import model.tunnel.RhapsodyConsole;
+import model.tunnel.rhapsody.RhapsodyConsole;
 import org.apache.commons.collections.CollectionUtils;
 import scriptgenerator.impl.RhapsodyConsoleScriptGenerator;
+import service.common.ManifestService;
+import service.action.RhapsodyActionService;
 import util.FileUtil;
 
 import java.io.File;
@@ -42,7 +43,7 @@ public class RhapsodyConsoleProfileService {
                 actionsBuilder = actionsBuilder.nextSpot(rhapsodyAction);
             }
 
-            Manifest rhapsodyManifest = new Manifest(actionsBuilder.build(), "Rhapsody Profile");
+            Manifest rhapsodyManifest = new Manifest(actionsBuilder.build(), ProfileName.RHAPSODY.profileName());
             manifestService.createManifestAtPathAndFolderElgatoStructure(rhapsodyDirectory, rhapsodyManifest);
         }
 

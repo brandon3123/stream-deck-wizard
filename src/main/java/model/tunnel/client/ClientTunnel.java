@@ -1,4 +1,4 @@
-package model.tunnel;
+package model.tunnel.client;
 
 import java.util.List;
 

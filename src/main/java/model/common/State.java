@@ -6,7 +6,6 @@ import org.apache.commons.lang.StringUtils;
 
 @JsonNaming(PropertyNamingStrategies.UpperCamelCaseStrategy.class)
 public class State {
-
     private final String fFamily;
     private final String fSize;
     private final String fStyle;

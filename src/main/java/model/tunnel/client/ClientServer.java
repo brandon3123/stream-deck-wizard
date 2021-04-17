@@ -1,4 +1,6 @@
-package model.tunnel;
+package model.tunnel.client;
+
+import model.tunnel.common.ServerDetails;
 
 import java.util.List;
 

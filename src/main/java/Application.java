@@ -1,15 +1,14 @@
 import com.fasterxml.jackson.databind.ObjectMapper;
 import model.profile.impl.StrataHealthProfile;
-import service.StreamDeckProfileService;
+import service.common.StreamDeckProfileService;
 
 import java.io.File;
 import java.io.IOException;
 
 public class Application {
-
     private static final String STRATA_PROFILE = "src/main/resources/templates/configuration/profiles/strata.json";
 
-    public static void main(String args[]) throws IOException {
+    public static void main(String[] args) throws IOException {
         ObjectMapper objectMapper = new ObjectMapper();
         File strataProfile = new File(STRATA_PROFILE);
         StrataHealthProfile strataHealthProfile = objectMapper.readValue(strataProfile, StrataHealthProfile.class);

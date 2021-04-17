@@ -1,9 +1,9 @@
-package service;
+package service.action;
 
-import model.action.Action;
-import model.action.BackToParent;
-import model.action.OpenChild;
-import model.action.Settings;
+import model.action.common.Action;
+import model.action.common.BackToParent;
+import model.action.common.OpenChild;
+import model.action.common.Settings;
 import model.common.State;
 
 import java.util.Arrays;
@@ -25,7 +25,12 @@ public class ActionService {
     }
 
     public Action backToParentAction() {
-        BackToParent backToParent = new BackToParent(null, Arrays.asList(State.builder().titleAlignment("bottom").build()));
+        BackToParent backToParent = new BackToParent(
+                null,
+                Arrays.asList(State
+                        .builder()
+                        .titleAlignment("bottom")
+                        .build()));
         return backToParent;
     }
 }

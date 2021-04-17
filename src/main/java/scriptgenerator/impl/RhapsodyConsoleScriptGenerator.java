@@ -1,8 +1,8 @@
 package scriptgenerator.impl;
 
 import enums.velocity.VelocityParameter;
-import model.tunnel.RhapsodyConsole;
-import model.tunnel.ServerDetails;
+import model.tunnel.rhapsody.RhapsodyConsole;
+import model.tunnel.common.ServerDetails;
 import org.apache.velocity.VelocityContext;
 import scriptgenerator.AbstractScriptGeneratorService;
 
@@ -11,9 +11,9 @@ import java.io.File;
 public class RhapsodyConsoleScriptGenerator extends AbstractScriptGeneratorService {
     private static final String RHAPSODY_TUNNEL_TEMPLATE = "src/main/resources/templates/velocity/rhapsodyTunnel.vm";
 
-    public File generateScript(RhapsodyConsole rhapsodyConsole, File directoryToCreateScriptAt) {
+    public File generateScript(RhapsodyConsole rhapsodyConsole, File scriptDirectory) {
         VelocityContext context = contextForRhapsodyConsole(rhapsodyConsole);
-        return generateScriptAtPath(context, directoryToCreateScriptAt, rhapsodyConsole.getName().toLowerCase());
+        return generateScriptAtPath(context, scriptDirectory, rhapsodyConsole.getName().toLowerCase());
     }
 
     @Override

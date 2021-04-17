@@ -1,4 +1,4 @@
-package model.action;
+package model.routine.common;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -11,18 +11,17 @@ import java.util.List;
 
 @JsonNaming(PropertyNamingStrategies.UpperCamelCaseStrategy.class)
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public abstract class Action {
-
+public abstract class Routine {
     private String name;
-    private Settings settings;
+    private int overrideState;
+    private RoutineSettings settings;
     private int state;
     private List<State> states;
     private String uuid;
 
-    public Action(String name, Settings settings, int state, List<State> states, String uuid) {
+    public Routine(String name, RoutineSettings settings, List<State> states, String uuid) {
         this.name = name;
         this.settings = settings;
-        this.state = state;
         this.states = states;
         this.uuid = uuid;
     }
@@ -35,11 +34,19 @@ public abstract class Action {
         this.name = name;
     }
 
-    public Settings getSettings() {
+    public int getOverrideState() {
+        return overrideState;
+    }
+
+    public void setOverrideState(int overrideState) {
+        this.overrideState = overrideState;
+    }
+
+    public RoutineSettings getSettings() {
         return settings;
     }
 
-    public void setSettings(Settings settings) {
+    public void setSettings(RoutineSettings settings) {
         this.settings = settings;
     }
 
@@ -70,10 +77,11 @@ public abstract class Action {
 
     @Override
     public String toString() {
-        return "Action{" +
+        return "Routine{" +
                 "name='" + name + '\'' +
+                ", overrideState=" + overrideState +
                 ", settings=" + settings +
-                ", state=" + state +
+                ", state='" + state + '\'' +
                 ", states=" + states +
                 ", uuid='" + uuid + '\'' +
                 '}';

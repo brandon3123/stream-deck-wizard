@@ -23,22 +23,19 @@ public abstract class AbstractScriptGeneratorService {
     protected abstract String templateLocation();
 
     protected File generateScriptAtPath(VelocityContext context, File scriptPath, String scriptName) {
-        String rhapsodyScriptPath = scriptPath.getAbsolutePath() + "/" + scriptName + ".sh";
-
-        File scriptCreated = null;
-
-        try(FileWriter fileWriter = new FileWriter(rhapsodyScriptPath)) {
+       File script = new File(scriptPath, scriptName + ".sh");
+        try(FileWriter fileWriter = new FileWriter(script)) {
             Template template = engine.getTemplate(templateLocation());
             template.merge(context, fileWriter);
-            Path path = Paths.get(rhapsodyScriptPath);
+            Path path = Paths.get(script.getAbsolutePath());
             Set<PosixFilePermission> posixFilePermissions = Files.getPosixFilePermissions(path);
             posixFilePermissions.add(PosixFilePermission.OWNER_EXECUTE);
             Files.setPosixFilePermissions(path, posixFilePermissions);
-            scriptCreated = path.toFile();
+            script = path.toFile();
         } catch (IOException e) {
             log.warning(Arrays.toString(e.getStackTrace()));
         }
 
-        return scriptCreated;
+        return script;
     }
 }

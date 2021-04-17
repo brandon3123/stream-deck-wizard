@@ -1,6 +1,6 @@
 package model.profile;
 
-import model.tunnel.ClientTunnel;
+import model.tunnel.client.ClientTunnel;
 
 import java.util.List;
 

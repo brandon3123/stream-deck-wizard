@@ -1,9 +1,11 @@
-package model.action;
+package model.action.rhapsody;
 
+import model.action.common.MultiAction;
+import model.action.common.Settings;
 import model.common.State;
-import model.routine.DelayRoutine;
-import model.routine.LaunchRhapsodyConsoleBrowserRoutine;
-import model.routine.ScriptOpenAction;
+import model.routine.multiaction.FiveSecondDelayRoutine;
+import model.routine.rhapsody.RhapsodyConsoleBrowserRoutine;
+import model.routine.common.ScriptOpenAction;
 
 import java.util.Arrays;
 
@@ -15,11 +17,10 @@ public class RhapsodyConsoleMultiAction extends MultiAction {
                 new Settings(
                         Arrays.asList(
                                 new ScriptOpenAction(scriptPath, title),
-                                new DelayRoutine(),
-                                new LaunchRhapsodyConsoleBrowserRoutine()
+                                new FiveSecondDelayRoutine(),
+                                new RhapsodyConsoleBrowserRoutine()
                         )
                 ),
-                0,
                 Arrays.asList(State
                         .builder()
                         .title(title)

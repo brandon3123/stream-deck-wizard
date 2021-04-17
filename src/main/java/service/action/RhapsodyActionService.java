@@ -1,7 +1,7 @@
-package service;
+package service.action;
 
-import model.action.Action;
-import model.action.RhapsodyConsoleMultiAction;
+import model.action.common.Action;
+import model.action.rhapsody.RhapsodyConsoleMultiAction;
 
 public class RhapsodyActionService extends ActionService {
 
@@ -9,5 +9,4 @@ public class RhapsodyActionService extends ActionService {
         RhapsodyConsoleMultiAction rhapsodyAction = new RhapsodyConsoleMultiAction(rhapsodyScriptPath, title);
         return rhapsodyAction;
     }
-
 }

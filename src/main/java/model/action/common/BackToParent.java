@@ -1,4 +1,4 @@
-package model.action;
+package model.action.common;
 
 import enums.name.action.ActionName;
 import enums.uuid.ProfileUUID;
@@ -9,6 +9,6 @@ import java.util.List;
 public class BackToParent extends Action {
 
     public BackToParent(Settings settings, List<State> states) {
-        super(ActionName.OPEN_FOLDER.getName(), settings, 0, states, ProfileUUID.BACK_TO_PARENT.uuid());
+        super(ActionName.OPEN_FOLDER.getName(), settings, states, ProfileUUID.BACK_TO_PARENT.uuid());
     }
 }

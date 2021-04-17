@@ -1,17 +1,16 @@
-package model.action;
+package model.action.common;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
-import model.routine.Routine;
-import model.routine.RoutineAlt;
+import model.routine.common.Routine;
+import model.routine.common.RoutineAlt;
 
 import java.util.List;
 
 @JsonNaming(PropertyNamingStrategies.UpperCamelCaseStrategy.class)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Settings {
-
     private String profileUUID;
     private List<Routine> routine;
     private List<RoutineAlt> routineAlt;

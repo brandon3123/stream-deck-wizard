@@ -1,4 +1,4 @@
-package model.tunnel;
+package model.tunnel.common;
 
 public class ServerDetails {
 

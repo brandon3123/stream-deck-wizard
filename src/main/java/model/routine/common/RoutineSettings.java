@@ -1,10 +1,9 @@
-package model.routine;
+package model.routine.common;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class RoutineSettings {
-
     private boolean openInBrowser;
     private String path;
     private long delay;

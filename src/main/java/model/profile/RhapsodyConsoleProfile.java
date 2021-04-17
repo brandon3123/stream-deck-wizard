@@ -1,6 +1,6 @@
 package model.profile;
 
-import model.tunnel.RhapsodyConsole;
+import model.tunnel.rhapsody.RhapsodyConsole;
 
 import java.util.List;
 
